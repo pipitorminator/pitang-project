@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ person.profile_path }}" alt="">
+      </div>
+    </div>
+    &nbsp;
+    <div class="col-12 col-md-7">
+      <div class="card">
+        <div class="card-header">
+          <button style="float:right;" class="btn btn-primary " (click)="editPerson(person)">edit</button>
+          <h5 class="card-title">{{ person?.name }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-title text-justify" *ngIf="person?.gender == 2"><strong>Genero:</strong> Masculino</p>
+          <p class="card-title text-justify" *ngIf="person?.gender == 1"><strong>Genero:</strong> Feminino</p>
+          <p class="card-title text-justify" *ngIf="person?.gender == 0"><strong>Genero:</strong> Indefinido</p>
+          
+          <p class="card-title text-justify" ><strong>local nascimento: </strong>{{person?.place_of_birth | uppercase}}</p>
+          <p class="card-title text-justify" ><strong>Pais Atual: </strong>{{person?.actual_country | uppercase}}</p>
+          <p class="card-title text-justify" ><strong>Altura: </strong>{{person?.height}}</p>
+        </div>
+
+ 
+      </div>
+
+      <p p class="text-white"><strong>Filmes:</strong> </p>
+  
+      <div style="height: 200px; width: 590px; overflow-y: scroll;">
+        <div class="d-inline-block" *ngFor="let movie of movies">
+          <div class="card bg-dark text-white">
+            <div class="card-columns" style="width: 35rem;">
+              <img class="card-img" *ngIf="movie?.backdrop_path"
+                src="https://image.tmdb.org/t/p/w250_and_h141_face{{ movie?.backdrop_path}}">
+  
+              <img style="width: 170px; height: 100px;" class="card-img" *ngIf="!movie?.backdrop_path"
+                src="../../../assets/WithOutPerfilPic.jpg">
+  
+              <a>{{movie.title}}</a>
+              &nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

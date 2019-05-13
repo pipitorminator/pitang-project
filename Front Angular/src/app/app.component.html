@@ -1,0 +1,38 @@
+<div class="bg">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <a class="navbar-brand mr-md-2 mr-0" routerLink="/" aria-label="NG Bootstrap" (click)="navbarCollapsed = true">
+      <img src="../assets/movie.png" class="img-logo" alt="">
+      <span class="ml-2 d-xl-none d-lg-none d-md-none d-inline">PIPI DB</span>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/movies']" (click)="navbarCollapsed = true">Filmes</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/tv']" (click)="navbarCollapsed = true">Series</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/people']" (click)="navbarCollapsed = true">Pessoas</a>
+          </li>
+      </ul>
+    </div>
+
+    <form class="form-inline">
+      <select #choice class="form-control mr-sm-2">
+        <option>Movie</option>
+        <option>Serie</option>
+        <option>Pessoa</option>
+      </select>
+      <input #input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="search(choice.value,input.value)">Pesquisar</button>
+    </form>
+  </nav>
+  &nbsp;
+
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

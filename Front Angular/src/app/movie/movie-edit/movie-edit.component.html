@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ movie.poster_path }}" alt="">
+    </div>
+  </div>
+  &nbsp;
+
+  <div class="col-12 col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <h5 class="card-title">
+            Titulo do Filme:
+            <input #titulo class="form-group col-7" [value]="movie.title">
+            <br>
+            Data de lançamento:
+            <input #lancamento class="form-group col-4" [value]="movie.release_date">
+          </h5>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-title text-justify"><strong>Sinopse: </strong></p>
+        <textarea #sinopse class="form-control" rows="7" [value]="movie.overview"></textarea>
+
+        <p class="card-title text-justify"><strong>Idioma: </strong></p>
+        <input #lingua class="form-group col-2" [value]="movie.original_language">
+
+        <p class="card-title text-justify"><strong>Duração: </strong></p>
+        <input #duracao class="form-group col-2" [value]="movie.runtime">
+
+        <p><strong>Gêneros:</strong> </p>
+        <select #genero (change)='0'>
+          <option *ngFor="let genre of genres" (click)="addGenre(movie,genre)">{{genre.name}}</option>
+        </select>
+        <br>
+
+        <div class="d-inline-block" *ngFor="let genre of movie?.genres; let i=index ">
+          <span (change)='0' class="badge badge-pill badge-primary" (click)="removeGenre(movie,i)">{{ genre?.name }}</span>
+        </div>
+
+        <p><strong>Elenco:</strong> </p>
+
+        <div style="height: 200px; width: 590px; overflow-y: scroll;">
+          <div class="d-inline-block" *ngFor="let cast of movie?.cast">
+            <div (change)='0' class="card bg-dark text-white" (click)="removeCast(movie,i)">
+              <div class="card-columns" style="width: 35rem;">
+                <img class="card-img" *ngIf="cast?.person?.profile_path"
+                  src="https://image.tmdb.org/t/p/w250_and_h141_face{{ cast?.person?.profile_path}}">
+    
+                <img style="width: 170px; height: 100px;" class="card-img" *ngIf="!cast?.person?.profile_path"
+                  src="../../../assets/WithOutPerfilPic.jpg">
+    
+                <a>name: {{cast?.person?.name}}</a>
+                &nbsp;
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="voltar(movie)">voltar</button>
+      <button class="btn btn-danger" (click)="deleteMovie(movie.id)">delete</button>
+      <button class="btn btn-success"
+        (click)="salvar(movie,titulo.value,lancamento.value,sinopse.value,lingua.value,duracao.value)">salvar</button>
+    </div>
+  </div>
+
+</div>

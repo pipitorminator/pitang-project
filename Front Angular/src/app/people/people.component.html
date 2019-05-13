@@ -1,0 +1,19 @@
+<div class="col-12">
+    <div class="card-columns col-centered" style="width: 50rem;">
+      <div class="card bg-dark text-white" (click)="goEdit(person)" *ngFor="let person of people">
+        <img class="card-img" *ngIf="person.profile_path"
+          src="https://image.tmdb.org/t/p/w250_and_h141_face{{ person?.profile_path}}" alt="_blank" />
+  
+        <img class="card-img" *ngIf="!person.profile_path" src="../../assets/WithOutPerfilPic.jpg" alt="Capa do filme" />
+  
+        <div class="card-body">
+          <p class="card-title">{{ person?.name }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalelements" [(page)]="page" [pageSize]="20"
+      [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="changePage()">
+    </ngb-pagination>
+  
+  </div>

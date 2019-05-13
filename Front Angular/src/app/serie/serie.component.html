@@ -1,0 +1,19 @@
+<div class="col-12">
+  <div class="card-columns col-centered" style="width: 50rem;">
+    <div class="card bg-dark text-white" (click)="goEdit(serie)" *ngFor="let serie of series">
+      <img class="card-img" *ngIf="serie.backdrop_path"
+        src="https://image.tmdb.org/t/p/w250_and_h141_face{{ serie?.backdrop_path }}" alt="_blank" />
+
+      <img class="card-img" *ngIf="!serie.backdrop_path" src="../../assets/WithOutMoviePic.jpg" alt="Capa do filme" />
+
+      <div class="card-body">
+        <p class="card-title">{{ serie?.original_name }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalelements" [(page)]="page" [pageSize]="9"
+    [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="changePage()">
+  </ngb-pagination>
+
+</div>

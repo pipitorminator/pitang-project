@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ serie.poster_path }}" alt="">
+    </div>
+  </div>
+  &nbsp;
+  <div class="col-12 col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <button style="float:right;" class="btn btn-primary " (click)="editSerie(serie)">edit</button>
+        <h5 class="card-title">{{ serie?.original_name }} ({{ serie?.first_air_date | date: 'yyyy'}})</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-title text-justify"><strong>Sinopse:</strong> {{ serie?.overview }}</p>
+        <p><strong>Idioma: </strong>{{serie?.original_language | uppercase}}</p>
+        <p><strong>Temporadas: </strong> {{serie?.number_of_seasons}}</p>
+        <p><strong>Duração por Episodio: </strong> {{serie?.episode_runtime}} minutos</p>
+
+        <p><strong>Gêneros:</strong> </p>
+        <div class="d-inline-block" *ngFor="let genre of serie?.genres">
+          <span class="badge badge-pill badge-primary">{{ genre?.name }}</span>
+        </div>
+        <br /> <br />
+
+      </div>
+    </div>
+
+    <p class="text-white"><strong>elenco:</strong> </p>
+    <div style="height: 200px; width: 590px; overflow-y: scroll;">
+      <div class="d-inline-block" *ngFor="let cast of serie?.cast">
+        <div class="card bg-dark text-white">
+          <div class="card-columns">
+            <img class="card-img" *ngIf="cast?.person?.profile_path"
+              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ cast?.person?.profile_path}}">
+
+            <img style="width: 170px; height: 100px;" class="card-img" *ngIf="!cast?.person?.profile_path"
+              src="../../../assets/WithOutPerfilPic.jpg">
+            <a>name: {{cast?.person?.name}}</a>
+            <li>{{cast?.department}}</li>
+            <li *ngIf="cast?.character">character: {{cast?.character}}</li>
+            &nbsp;
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

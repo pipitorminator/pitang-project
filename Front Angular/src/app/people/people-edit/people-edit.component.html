@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ person.profile_path }}" alt="">
+      </div>
+    </div>
+    &nbsp;
+  
+    <div class="col-12 col-md-7">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <h5 class="card-title">
+              Nome:
+              <input #name class="form-group col-7" [value]="person.name">
+            </h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-title text-justify"><strong>Genero: </strong></p>
+          <input #genero class="form-group col-2" [value]="person.gender">
+  
+          <p class="card-title text-justify"><strong>Local nascimento: </strong></p>
+          <input #nascimento class="form-group col-2" [value]="person.place_of_birth">
+
+          <p class="card-title text-justify"><strong>Pais Atual : </strong></p>
+          <input #pais_atual class="form-group col-2" [value]="person.actual_country">
+  
+          <p class="card-title text-justify"><strong>Altura: </strong></p>
+          <input #altura class="form-group col-2" [value]="person.height">
+
+
+          <p><strong>Filmes:</strong> </p>
+  
+          <div style="height: 200px; width: 590px; overflow-y: scroll;">
+            <div class="d-inline-block" *ngFor="let movie of movies">
+              <div (change)='0' class="card bg-dark text-white" (click)="removeMovie(movie, i)">
+                <div class="card-columns" style="width: 35rem;">
+                  <img class="card-img" *ngIf="movie?.backdrop_path"
+                    src="https://image.tmdb.org/t/p/w250_and_h141_face{{ movie?.backdrop_path}}">
+      
+                  <img style="width: 170px; height: 100px;" class="card-img" *ngIf="!movie?.backdrop_path"
+                    src="../../../assets/WithOutPerfilPic.jpg">
+      
+                  <a>{{movie.title}}</a>
+                  &nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="voltar(person)">voltar</button>
+        <button class="btn btn-success"
+          (click)="salvar(person,name.value,genero.value,nascimento.value,pais_atual.value,altura.value)">salvar</button>
+      </div>
+    </div>
+  
+  </div>
